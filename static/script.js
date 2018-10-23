@@ -37,7 +37,7 @@ tube_colours = {
     "Crossrail": "#7156A5"
 };
 
-mapboxgl.accessToken = 'pk.eyJ1IjoidXJzY2hyZWkiLCJhIjoiVXN5WkVYbyJ9.87LXqCJ6CuZsfrJ5hcijpw';
+mapboxgl.accessToken = 'sk.eyJ1IjoidXJzY2hyZWkiLCJhIjoiY2pubHJlYXpqMHJ3MTN3cGtydnFneDI5diJ9.qmdXB_VvWsFXxZOilqygGw';
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v9',
