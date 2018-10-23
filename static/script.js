@@ -79,15 +79,6 @@ map.on('style.load', function() {
                     },
                     'fill-extrusion-opacity': .75,
                 }
-                //     "filter": ["==", "line_name", line],
-                //     "id": line + "-extruded",
-                //     "type": "line",
-                //     "source": "tubes",
-                //     'paint': {
-                //         "line-width": 1.5,
-                //         'line-color': tube_colours[line],
-                //         'line-opacity': 0.75
-                //     }
             })
             .flyTo({
                 bearing: Math.floor(Math.random() * (360 - 1 + 1)) + 1,
