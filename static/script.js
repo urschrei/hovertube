@@ -93,7 +93,7 @@ map.on('style.load', function() {
                 bearing: Math.floor(Math.random() * (360 - 1 + 1)) + 1,
                 pitch: Math.floor(Math.random() * (70.0 - 1.0 + 1.0)) + 50.0,
             });
-        bheight += 10;
+        // bheight += 10;
     });
 });
 
