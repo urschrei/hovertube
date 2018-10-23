@@ -12,7 +12,7 @@ lines = [
     "Victoria",
     "Waterloo & City",
     "DLR",
-    "Overground",
+    "London Overground",
     "Tramlink",
     "Emirates Air Line",
     "Crossrail"
@@ -31,7 +31,7 @@ tube_colours = {
     "Victoria": "#0098D4",
     "Waterloo & City": "#95CDBA",
     "DLR": "#00A4A7",
-    "Overground": "#EE7C0E",
+    "London Overground": "#EE7C0E",
     "Tramlink": "#84B817",
     "Emirates Air Line": "#E21836",
     "Crossrail": "#7156A5"
