@@ -77,7 +77,7 @@ map.on('style.load', function() {
                         duration: 1500,
                         delay: 1000
                     },
-                    'fill-extrusion-opacity': .75,
+                    'fill-extrusion-opacity': .85,
                 }
             })
             .flyTo({
