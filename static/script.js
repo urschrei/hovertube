@@ -90,15 +90,24 @@ map.on('style.load', function() {
 
 $(document).ready(function() {
     lines.forEach(function(line) {
-        var btn = '<button type="button" id=' + encodeURIComponent(line) + ' class="btn btn-outline-light active" aria-pressed="true"><span style="color: ' + tube_colours[line] + ';">' + line + '</span></button>';
+        var btn = '<button type="button" style="background-color: ' + tube_colours[line] + ';" id=' + encodeURIComponent(line) + ' class="btn btn-outline-light active" aria-pressed="true"><span style="color: #f8f9fa;">' + line + '</span></button>';
         $('#linelist').append(btn);
     })
     $('.btn').click(function() {
+        var bgcolour = $(this).css('backgroundColor');
         $(this).button('toggle');
         if (map.getLayoutProperty($(this).attr('id') + '-extruded', 'visibility') === 'visible') {
             map.setLayoutProperty($(this).attr('id') + '-extruded', 'visibility', 'none');
+            $(this)
+                .css('background-color', '#f8f9fa')
+                .find(">:first-child")
+                .css('color', bgcolour);
         } else {
             map.setLayoutProperty($(this).attr('id') + '-extruded', 'visibility', 'visible');
+            $(this)
+                .css('background-color', tube_colours[$(this).text()])
+                .find(">:first-child")
+                .css('color', '#f8f9fa');
         }
     });
 });
