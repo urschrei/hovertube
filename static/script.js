@@ -90,7 +90,7 @@ map.on('style.load', function() {
 
 $(document).ready(function() {
     lines.forEach(function(line) {
-        var btn = '<button type="button" id=' + encodeURIComponent(line) + ' class="btn btn-outline-secondary aria-pressed="true" active"><span style="color: ' + tube_colours[line] + ';">' + line + '</span></button>';
+        var btn = '<button type="button" id=' + encodeURIComponent(line) + ' class="btn btn-outline-light active" aria-pressed="true"><span style="color: ' + tube_colours[line] + ';">' + line + '</span></button>';
         $('#linelist').append(btn);
     })
     $('.btn').click(function() {
