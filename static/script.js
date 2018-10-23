@@ -1,5 +1,5 @@
 // source: http://oobrien.com/2012/01/tube-colours/
-lines = [
+var lines = [
     "Bakerloo",
     "Central",
     "Circle",
@@ -18,7 +18,7 @@ lines = [
     "Crossrail"
 ];
 
-tube_colours = {
+var tube_colours = {
     "Bakerloo": "#B36305",
     "Central": "#E32017",
     "Circle": "#FFD300",
