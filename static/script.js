@@ -1,4 +1,3 @@
-// source: http://oobrien.com/2012/01/tube-colours/
 var lines = [
     "Bakerloo",
     "Central",
@@ -18,6 +17,7 @@ var lines = [
     "Crossrail"
 ];
 
+// source: http://oobrien.com/2012/01/tube-colours/
 var tube_colours = {
     "Bakerloo": "#B36305",
     "Central": "#E32017",
