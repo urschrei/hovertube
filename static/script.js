@@ -21,7 +21,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidXJzY2hyZWkiLCJhIjoiY2pubHJsaGZjMWl1dzNrbzM3e
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v9',
-    zoom: 15.,
+    zoom: 15.5,
     center: {
         lng: -0.11598344692356477,
         lat: 51.512726521488304
@@ -95,4 +95,11 @@ $(document).ready(function() {
                 .css('color', '#f8f9fa');
         }
     });
+    setTimeout(function() {
+        map.flyTo({
+            zoom: 14.0,
+            speed: 0.2,
+            curve: 1
+        });
+    }, 3000);
 });
