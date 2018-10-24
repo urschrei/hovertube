@@ -43,14 +43,14 @@ map.on('style.load', function() {
                 data: "static/tube_polygons.geojson"
             });
     var bheight = 500;
-    Object.entries(lines).forEach(function(line) {
+    for (const entry in lines) {
         map.addLayer({
-                "filter": ["==", "line_name", line[0]],
-                "id": encodeURIComponent(line) + "-extruded",
+                "filter": ["==", "line_name", entry],
+                "id": encodeURIComponent(entry) + "-extruded",
                 "type": "fill-extrusion",
                 "source": "tubes",
                 "paint": {
-                    'fill-extrusion-color': line[1],
+                    'fill-extrusion-color': lines[entry],
                     'fill-extrusion-base': bheight,
                     'fill-extrusion-height': bheight + 2,
                     'fill-extrusion-height-transition': {
@@ -65,18 +65,18 @@ map.on('style.load', function() {
                 pitch: Math.floor(Math.random() * (70.0 - 1.0 + 1.0)) + 50.0,
             });
         bheight += 10;
-    })
+    }
 });
 
 $(document).ready(function() {
     // Build the rail line buttons
-    Object.entries(lines).forEach(function(line) {
+    for (const entry in lines) {
             $('#linelist').append(
-                `<button type="button" style="background-color: ${line[1]};"
-                id="${encodeURIComponent(line)}" class="btn btn-outline-light active"
-                aria-pressed="true"><span style="color: #f8f9fa;">${line[0]}</span></button>`
+                `<button type="button" style="background-color: ${lines[entry]};"
+                id="${encodeURIComponent(entry)}" class="btn btn-outline-light active"
+                aria-pressed="true"><span style="color: #f8f9fa;">${entry}</span></button>`
             );
-        })
+        }
     // Fiddle with button colours to make it obvious which lines are disabled/enabled
     $('.btn').click(function() {
         var bgcolour = $(this).css('backgroundColor');
