@@ -1,3 +1,5 @@
+import mapboxgl from 'mapbox-gl';
+
 let lines = new Map([
     ["Bakerloo", "#B36305"],
     ["Central", "#E32017"],
@@ -18,7 +20,7 @@ let lines = new Map([
 ]);
 
 mapboxgl.accessToken = 'pk.eyJ1IjoidXJzY2hyZWkiLCJhIjoiY2pubHJsaGZjMWl1dzNrbzM3eDBuNzN3eiJ9.5xEWTiavcSRbv7LYZoAmUg';
-var map = new mapboxgl.Map({
+const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v9',
     zoom: 15.5,
