@@ -1,21 +1,21 @@
-const lines = {
-    "Bakerloo": "#B36305",
-    "Central": "#E32017",
-    "Circle": "#FFD300",
-    "District": "#00782A",
-    "Hammersmith & City": "#F3A9BB",
-    "Jubilee": "#A0A5A9",
-    "Metropolitan": "#9B0056",
-    "Northern": "#000000",
-    "Piccadilly": "#003688",
-    "Victoria": "#0098D4",
-    "Waterloo & City": "#95CDBA",
-    "DLR": "#00A4A7",
-    "London Overground": "#EE7C0E",
-    "Tramlink": "#84B817",
-    "Emirates Air Line": "#E21836",
-    "Crossrail": "#7156A5"
-};
+let lines = new Map([
+    ["Bakerloo", "#B36305"],
+    ["Central", "#E32017"],
+    ["Circle", "#FFD300"],
+    ["District", "#00782A"],
+    ["Hammersmith & City", "#F3A9BB"],
+    ["Jubilee", "#A0A5A9"],
+    ["Metropolitan", "#9B0056"],
+    ["Northern", "#000000"],
+    ["Piccadilly", "#003688"],
+    ["Victoria", "#0098D4"],
+    ["Waterloo & City", "#95CDBA"],
+    ["DLR", "#00A4A7"],
+    ["London Overground", "#EE7C0E"],
+    ["Tramlink", "#84B817"],
+    ["Emirates Air Line", "#E21836"],
+    ["Crossrail", "#7156A5"]
+]);
 
 mapboxgl.accessToken = 'pk.eyJ1IjoidXJzY2hyZWkiLCJhIjoiY2pubHJsaGZjMWl1dzNrbzM3eDBuNzN3eiJ9.5xEWTiavcSRbv7LYZoAmUg';
 var map = new mapboxgl.Map({
@@ -43,14 +43,14 @@ map.on('style.load', function() {
                 data: "static/tube_polygons.geojson"
             });
     var bheight = 500;
-    for (const entry in lines) {
+    for (let [name, colour] of lines) {
         map.addLayer({
-                "filter": ["==", "line_name", entry],
-                "id": encodeURIComponent(entry) + "-extruded",
+                "filter": ["==", "line_name", name],
+                "id": encodeURIComponent(name) + "-extruded",
                 "type": "fill-extrusion",
                 "source": "tubes",
                 "paint": {
-                    'fill-extrusion-color': lines[entry],
+                    'fill-extrusion-color': colour,
                     'fill-extrusion-base': bheight,
                     'fill-extrusion-height': bheight + 2,
                     'fill-extrusion-height-transition': {
@@ -70,13 +70,13 @@ map.on('style.load', function() {
 
 $(document).ready(function() {
     // Build the rail line buttons
-    for (const entry in lines) {
-            $('#linelist').append(
-                `<button type="button" style="background-color: ${lines[entry]};"
-                id="${encodeURIComponent(entry)}" class="btn btn-outline-light active"
-                aria-pressed="true"><span style="color: #f8f9fa;">${entry}</span></button>`
-            );
-        }
+    for (let [name, colour] of lines) {
+        $('#linelist').append(
+            `<button type="button" style="background-color: ${colour};"
+                id="${encodeURIComponent(name)}" class="btn btn-outline-light active"
+                aria-pressed="true"><span style="color: #f8f9fa;">${name}</span></button>`
+        );
+    }
     // Fiddle with button colours to make it obvious which lines are disabled/enabled
     $('.btn').click(function() {
         var bgcolour = $(this).css('backgroundColor');
@@ -90,7 +90,7 @@ $(document).ready(function() {
         } else {
             map.setLayoutProperty($(this).attr('id') + '-extruded', 'visibility', 'visible');
             $(this)
-                .css('background-color', lines[$(this).text()])
+                .css('background-color', lines.get($(this).text()))
                 .find(">:first-child")
                 .css('color', '#f8f9fa');
         }
