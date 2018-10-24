@@ -1,24 +1,4 @@
-var lines = [
-    "Bakerloo",
-    "Central",
-    "Circle",
-    "District",
-    "Hammersmith & City",
-    "Jubilee",
-    "Metropolitan",
-    "Northern",
-    "Piccadilly",
-    "Victoria",
-    "Waterloo & City",
-    "DLR",
-    "London Overground",
-    "Tramlink",
-    "Emirates Air Line",
-    "Crossrail"
-];
-
-// source: http://oobrien.com/2012/01/tube-colours/
-var tube_colours = {
+const lines = {
     "Bakerloo": "#B36305",
     "Central": "#E32017",
     "Circle": "#FFD300",
@@ -63,14 +43,14 @@ map.on('style.load', function() {
                 data: "static/tube_polygons.geojson"
             });
     var bheight = 500;
-    lines.forEach(function(line) {
+    Object.entries(lines).forEach(function(line) {
         map.addLayer({
-                "filter": ["==", "line_name", line],
+                "filter": ["==", "line_name", line[0]],
                 "id": encodeURIComponent(line) + "-extruded",
                 "type": "fill-extrusion",
                 "source": "tubes",
                 "paint": {
-                    'fill-extrusion-color': tube_colours[line],
+                    'fill-extrusion-color': line[1],
                     'fill-extrusion-base': bheight,
                     'fill-extrusion-height': bheight + 2,
                     'fill-extrusion-height-transition': {
@@ -85,19 +65,18 @@ map.on('style.load', function() {
                 pitch: Math.floor(Math.random() * (70.0 - 1.0 + 1.0)) + 50.0,
             });
         bheight += 10;
-    });
+    })
 });
 
 $(document).ready(function() {
     // Build the rail line buttons
-    lines.forEach(function(line) {
-        var btn = `
-            <button type="button" style="background-color: ${tube_colours[line]};"
-            id="${encodeURIComponent(line)}" class="btn btn-outline-light active"
-            aria-pressed="true"><span style="color: #f8f9fa;">${line}</span></button>
-        `;
-        $('#linelist').append(btn);
-    })
+    Object.entries(lines).forEach(function(line) {
+            $('#linelist').append(
+                `<button type="button" style="background-color: ${line[1]};"
+                id="${encodeURIComponent(line)}" class="btn btn-outline-light active"
+                aria-pressed="true"><span style="color: #f8f9fa;">${line[0]}</span></button>`
+            );
+        })
     // Fiddle with button colours to make it obvious which lines are disabled/enabled
     $('.btn').click(function() {
         var bgcolour = $(this).css('backgroundColor');
@@ -111,7 +90,7 @@ $(document).ready(function() {
         } else {
             map.setLayoutProperty($(this).attr('id') + '-extruded', 'visibility', 'visible');
             $(this)
-                .css('background-color', tube_colours[$(this).text()])
+                .css('background-color', lines[$(this).text()])
                 .find(">:first-child")
                 .css('color', '#f8f9fa');
         }
