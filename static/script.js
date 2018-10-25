@@ -73,7 +73,7 @@ map.on('style.load', function() {
 $(document).ready(function() {
     // Build the rail line buttons
     for (let [name, colour] of lines) {
-        $('#linelist').append(
+        document.getElementById("linelist").insertAdjacentHTML('beforeend',
             `<button type="button" style="background-color: ${colour};"
                 id="${encodeURIComponent(name)}" class="btn btn-outline-light active"
                 aria-pressed="true"><span style="color: #f8f9fa;">${name}</span></button>`
