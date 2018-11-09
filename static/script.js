@@ -19,6 +19,30 @@ let lines = new Map([
     ["Crossrail", "#7156A5"]
 ]);
 
+function addLine(name, colour, bheight) {
+    map.addLayer({
+            "filter": ["==", "line_name", name],
+            "id": encodeURIComponent(name) + "-extruded",
+            "type": "fill-extrusion",
+            "source": "tubes",
+            "paint": {
+                'fill-extrusion-color': colour,
+                'fill-extrusion-base': bheight,
+                'fill-extrusion-height': bheight + 2,
+                'fill-extrusion-height-transition': {
+                    duration: 1500,
+                    delay: 1000
+                },
+                'fill-extrusion-opacity': .85,
+            }
+        })
+        .flyTo({
+            bearing: Math.floor(Math.random() * (360 - 1 + 1)) + 1,
+            pitch: Math.floor(Math.random() * (70.0 - 1.0 + 1.0)) + 50.0,
+        });
+    // bheight += 10;
+}
+
 mapboxgl.accessToken = 'pk.eyJ1IjoidXJzY2hyZWkiLCJhIjoiY2pubHJsaGZjMWl1dzNrbzM3eDBuNzN3eiJ9.5xEWTiavcSRbv7LYZoAmUg';
 const map = new mapboxgl.Map({
     container: 'map',
@@ -46,27 +70,7 @@ map.on('style.load', function() {
             });
     var bheight = 500;
     for (let [name, colour] of lines) {
-        map.addLayer({
-                "filter": ["==", "line_name", name],
-                "id": encodeURIComponent(name) + "-extruded",
-                "type": "fill-extrusion",
-                "source": "tubes",
-                "paint": {
-                    'fill-extrusion-color': colour,
-                    'fill-extrusion-base': bheight,
-                    'fill-extrusion-height': bheight + 2,
-                    'fill-extrusion-height-transition': {
-                        duration: 1500,
-                        delay: 1000
-                    },
-                    'fill-extrusion-opacity': .85,
-                }
-            })
-            .flyTo({
-                bearing: Math.floor(Math.random() * (360 - 1 + 1)) + 1,
-                pitch: Math.floor(Math.random() * (70.0 - 1.0 + 1.0)) + 50.0,
-            });
-        bheight += 10;
+        addLine(name, colour, bheight);
     }
 });
 
@@ -80,7 +84,7 @@ $(document).ready(function() {
         );
     }
     // Fiddle with button colours to make it obvious which lines are disabled/enabled
-    $('.btn').click(function() {
+    $('.btn').not('#share').click(function() {
         var bgcolour = $(this).css('backgroundColor');
         $(this).button('toggle');
         if (map.getLayoutProperty($(this).attr('id') + '-extruded', 'visibility') === 'visible') {
@@ -95,6 +99,37 @@ $(document).ready(function() {
                 .css('background-color', lines.get($(this).text()))
                 .find(">:first-child")
                 .css('color', '#f8f9fa');
+        }
+    });
+    $('#share').click(function() {
+        if (map.getLayer('share-extruded')) {
+            map.removeLayer('share-extruded');
+            // colour all other lines correctly
+            for (let [name, colour] of lines) {
+                map.setPaintProperty(encodeURIComponent(name) + '-extruded', 'fill-extrusion-color', colour);
+            }
+        } else {
+            // colour all other lines grey
+            for (let [name, colour] of lines) {
+                map.setPaintProperty(encodeURIComponent(name) + '-extruded', 'fill-extrusion-color', "#A0A5A9");
+            }
+            // highlight shared segments
+            map.addLayer({
+                "filter": ["==", "shared", 1],
+                "id": "share-extruded",
+                "type": "fill-extrusion",
+                "source": "tubes",
+                "paint": {
+                    'fill-extrusion-color': "#ff1d8e",
+                    'fill-extrusion-base': 500,
+                    'fill-extrusion-height': 500 + 2,
+                    'fill-extrusion-height-transition': {
+                        duration: 1500,
+                        delay: 1000
+                    },
+                    'fill-extrusion-opacity': .95,
+                }
+            })
         }
     });
     setTimeout(function() {
