@@ -36,11 +36,6 @@ function addLine(name, colour, bheight) {
                 'fill-extrusion-opacity': .85,
             }
         })
-        .flyTo({
-            bearing: Math.floor(Math.random() * (360 - 1 + 1)) + 1,
-            pitch: Math.floor(Math.random() * (70.0 - 1.0 + 1.0)) + 50.0,
-        });
-    // bheight += 10;
 }
 
 mapboxgl.accessToken = 'pk.eyJ1IjoidXJzY2hyZWkiLCJhIjoiY2pubHJsaGZjMWl1dzNrbzM3eDBuNzN3eiJ9.5xEWTiavcSRbv7LYZoAmUg';
@@ -71,7 +66,12 @@ map.on('style.load', function() {
     var bheight = 500;
     for (let [name, colour] of lines) {
         addLine(name, colour, bheight);
+        // bheight += 10;
     }
+    map.flyTo({
+        bearing: Math.floor(Math.random() * (360 - 1 + 1)) + 1,
+        pitch: Math.floor(Math.random() * (70.0 - 1.0 + 1.0)) + 50.0,
+    });
 });
 
 $(document).ready(function() {
