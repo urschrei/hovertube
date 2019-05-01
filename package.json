@@ -1,0 +1,36 @@
+{
+  "name": "tube_gl",
+  "version": "1.0.0",
+  "description": "Visualise TfL lines using Mapbox GL",
+  "main": "rollup.config.js",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-eslint": "^5.1.0",
+    "rollup": "^1.10.1",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-uglify": "^6.0.2",
+    "mapbox-gl": "^0.54.0"
+  },
+  "devDependencies": {
+    "rollup-plugin-babel": "^4.3.2",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urschrei/hovertube.git"
+  },
+  "keywords": [
+    "TfL"
+  ],
+  "author": "Stephan Hügel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/urschrei/hovertube/issues"
+  },
+  "homepage": "https://github.com/urschrei/hovertube#readme"
+}
