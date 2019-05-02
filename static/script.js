@@ -115,7 +115,7 @@ $(document).ready(function() {
             }
             // highlight shared segments
             map.addLayer({
-                "filter": ["==", "shared", 1],
+                "filter": ["==", "shared", true],
                 "id": "share-extruded",
                 "type": "fill-extrusion",
                 "source": "tubes",
