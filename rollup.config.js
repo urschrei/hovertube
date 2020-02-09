@@ -1,22 +1,36 @@
 import babel from 'rollup-plugin-babel';
-import uglify from 'rollup-plugin-uglify';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import postcss from 'rollup-plugin-postcss';
+import { eslint } from 'rollup-plugin-eslint';
+
+const path = require('path');
 
 module.exports = {
   input: 'static/script.js',
   plugins: [
-    babel({
-      exclude: 'node_modules/**'
+    eslint({
+      exclude: [
+        'src/styles/**',
+        'static/*.scss'
+      ]
     }),
-    uglify.uglify(),
+    babel({
+      exclude: 'node_modules/**',
+      sourceMaps: true,
+      inputSourceMap: true
+    }),
     resolve(),
-    commonjs()
+    postcss({ 
+      plugins: []
+    }),
+    commonjs({}),
   ],
   output: {
     file: 'static/bundle.js',
     format: 'iife',
-    sourceMap: 'inline',
-    globals: {'mapbox-gl': 'mapboxgl'}
+    globals: {
+      'mapbox-gl': 'mapboxgl',
+    }
   }
 };

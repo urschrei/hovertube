@@ -1,4 +1,8 @@
 import mapboxgl from 'mapbox-gl';
+import 'bootstrap';
+import './style.scss'
+import jQuery from 'jquery';
+var $ = jQuery;
 
 let lines = new Map([
     ["Bakerloo", "#B36305"],
@@ -21,21 +25,21 @@ let lines = new Map([
 
 function addLine(name, colour, bheight) {
     map.addLayer({
-            "filter": ["==", "line_name", name],
-            "id": encodeURIComponent(name) + "-extruded",
-            "type": "fill-extrusion",
-            "source": "tubes",
-            "paint": {
-                'fill-extrusion-color': colour,
-                'fill-extrusion-base': bheight,
-                'fill-extrusion-height': bheight + 2,
-                'fill-extrusion-height-transition': {
-                    duration: 1500,
-                    delay: 1000
-                },
-                'fill-extrusion-opacity': .85,
-            }
-        })
+        "filter": ["==", "line_name", name],
+        "id": encodeURIComponent(name) + "-extruded",
+        "type": "fill-extrusion",
+        "source": "tubes",
+        "paint": {
+            'fill-extrusion-color': colour,
+            'fill-extrusion-base': bheight,
+            'fill-extrusion-height': bheight + 2,
+            'fill-extrusion-height-transition': {
+                duration: 1500,
+                delay: 1000
+            },
+            'fill-extrusion-opacity': .85,
+        }
+    })
 }
 
 mapboxgl.accessToken = 'pk.eyJ1IjoidXJzY2hyZWkiLCJhIjoiY2pubHJsaGZjMWl1dzNrbzM3eDBuNzN3eiJ9.5xEWTiavcSRbv7LYZoAmUg';

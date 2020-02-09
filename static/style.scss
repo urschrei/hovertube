@@ -1,0 +1,3 @@
+@import "~bootstrap/scss/bootstrap";
+// mapbox-gl isn't scss, but the compiler seems OK with it anyway
+@import "~mapbox-gl/dist/mapbox-gl";
