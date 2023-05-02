@@ -28,7 +28,7 @@ await esbuild.build({
       eslint({
         "useEslintrc": true
       }),
-      esbuildPluginBrowserslist(browserslist('>0.2%, not dead, not ie 11, not chrome < 51, not safari < 10'), {
+      esbuildPluginBrowserslist(browserslist('defaults'), {
         printUnknownTargets: false,
       }),
   ],
