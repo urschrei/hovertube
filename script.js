@@ -146,14 +146,6 @@ map.on('style.load', function() {
                 'sky-atmosphere-sun-intensity': 5
             }
         });
-    // });
-    // map.setFog({
-    //         color: 'rgb(186, 210, 235)', // Lower atmosphere
-    //         'high-color': 'rgb(36, 92, 223)', // Upper atmosphere
-    //         'horizon-blend': 0.02, // Atmosphere thickness (default 0.2 at low zooms)
-    //         'space-color': 'rgb(11, 11, 25)', // Background color
-    //         'star-intensity': 0.6 // Background star brightness (default 0.35 at low zoooms )
-    // });
 });
 
 map.on('load', () => {
@@ -183,7 +175,7 @@ map.on('load', () => {
     sharedbutton.onclick = function() {
         if (map.getLayer('share-extruded')) {
             map.removeLayer('share-extruded');
-        //     // colour all other lines correctly
+            // colour all other lines correctly
             for (let [name, colour] of lines) {
                 map.setPaintProperty(`${encodeURIComponent(name)}-extruded`, 'fill-extrusion-color', colour);
             }
