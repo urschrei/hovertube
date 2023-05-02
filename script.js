@@ -153,7 +153,7 @@ map.on('load', () => {
     for (let [name, colour] of lines) {
         document.getElementById("linelist").insertAdjacentHTML('beforeend',
             `<button type="button" style="background-color: ${colour};"
-                id="${encodeURIComponent(name)}" class="btn btn-outline-light active"
+                id="${encodeURIComponent(name)}" class="btn btn-outline-dark active"
                 aria-pressed="true"><span style="color: #f8f9fa;">${name}</span></button>`
         );
     }
