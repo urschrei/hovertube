@@ -19,6 +19,8 @@
   "dependencies": {
     "bootstrap": "^5.2.3",
     "esbuild": "0.17.18",
+    "esbuild-plugin-eslint": "^0.3.6",
+    "eslint": "^8.39.0",
     "mapbox-gl": "^2.14.1"
   },
   "devDependencies": {

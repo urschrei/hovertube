@@ -2,14 +2,6 @@ import mapboxgl from 'mapbox-gl';
 import 'bootstrap';
 import './style.scss'
 
-function toggle(el) {
-  if (el.style.display == 'none') {
-    el.style.display = '';
-  } else {
-    el.style.display = 'none';
-  }
-}
-
 let lines = new Map([
     ["Bakerloo", "#B36305"],
     ["Central", "#E32017"],
@@ -96,7 +88,6 @@ map.on('load', () => {
     document.querySelectorAll(".btn:not(#share)").forEach(function(btn) {
         btn.onclick = function() {
             const bgcolour = btn.style.backgroundColor;
-            // toggle(btn);
             if (map.getLayoutProperty(`${btn.id}-extruded`, 'visibility') === 'visible') {
                 map.setLayoutProperty(`${btn.id}-extruded`, 'visibility', 'none');
                 btn.style.backgroundColor = '#f8f9fa';

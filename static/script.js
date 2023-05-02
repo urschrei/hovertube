@@ -27806,7 +27806,7 @@ This leads to lower resolution of hillshade. For full hillshade resolution but h
           map.setPaintProperty(`${encodeURIComponent(name)}-extruded`, "fill-extrusion-color", colour);
         }
       } else {
-        for (let [name, colour] of lines) {
+        for (let [name, _] of lines) {
           map.setPaintProperty(`${encodeURIComponent(name)}-extruded`, "fill-extrusion-color", "#A0A5A9");
         }
         map.addLayer({

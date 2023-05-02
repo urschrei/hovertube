@@ -3,6 +3,8 @@ import { sassPlugin } from "esbuild-sass-plugin";
 import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
 
+import eslint from 'esbuild-plugin-eslint';
+
 await esbuild.build({
   entryPoints: ['script.js'],
   bundle: true,
@@ -15,5 +17,6 @@ await esbuild.build({
               return css;
           },
       }),
+      eslint({ /* config */ })
   ],
 })
