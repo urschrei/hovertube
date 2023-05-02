@@ -18,7 +18,9 @@
   "homepage": "https://github.com/urschrei/hovertube#readme",
   "dependencies": {
     "bootstrap": "^5.2.3",
-    "esbuild": "0.17.18",
+    "browserslist": "^4.21.5",
+    "esbuild": "^0.17.18",
+    "esbuild-plugin-browserslist": "^0.7.0",
     "esbuild-plugin-eslint": "^0.3.6",
     "eslint": "^8.39.0",
     "mapbox-gl": "^2.14.1"
