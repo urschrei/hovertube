@@ -25,7 +25,7 @@ let lines = new Map([
 function addLine(name, colour, bheight) {
     map.addLayer({
         "filter": ["==", "line_name", name],
-        "id": encodeURIComponent(name) + "-extruded",
+        "id": `${encodeURIComponent(name)}-extruded`,
         "type": "fill-extrusion",
         "source": "tubes",
         "paint": {
@@ -181,7 +181,7 @@ map.on('load', () => {
             }
         } else {
             // colour all other lines grey
-            for (let [name, colour] of lines) {
+            for (let [name,] of lines) {
                 map.setPaintProperty(`${encodeURIComponent(name)}-extruded`, 'fill-extrusion-color', "#A0A5A9");
             }
             // highlight shared segments
