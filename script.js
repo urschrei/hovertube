@@ -44,7 +44,7 @@ function addLine(name, colour, bheight) {
 mapboxgl.accessToken = 'pk.eyJ1IjoidXJzY2hyZWkiLCJhIjoiY2pubHJsaGZjMWl1dzNrbzM3eDBuNzN3eiJ9.5xEWTiavcSRbv7LYZoAmUg';
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/light-v9',
+    style: 'mapbox://styles/mapbox/light-v11',
     zoom: 15.5,
     center: {
         lng: -0.11598344692356477,
@@ -116,12 +116,12 @@ map.on('style.load', function() {
         bearing: Math.floor(Math.random() * (360 - 1 + 1)) + 1,
         pitch: Math.floor(Math.random() * (70.0 - 1.0 + 1.0)) + 50.0,
     });
-    map.addSource('mapbox-dem', {
-        'type': 'raster-dem',
-        'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-        'tileSize': 512,
-        'maxzoom': 14
-    });
+    // map.addSource('mapbox-dem', {
+    //     'type': 'raster-dem',
+    //     'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+    //     'tileSize': 512,
+    //     'maxzoom': 14
+    // });
     map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
         map.addLayer({
             'id': 'sky',
