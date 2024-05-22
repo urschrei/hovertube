@@ -116,36 +116,29 @@ map.on('style.load', function() {
         bearing: Math.floor(Math.random() * (360 - 1 + 1)) + 1,
         pitch: Math.floor(Math.random() * (70.0 - 1.0 + 1.0)) + 50.0,
     });
-    // map.addSource('mapbox-dem', {
-    //     'type': 'raster-dem',
-    //     'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-    //     'tileSize': 512,
-    //     'maxzoom': 14
-    // });
-    map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-        map.addLayer({
-            'id': 'sky',
-            'type': 'sky',
-            'paint': {
-                'sky-opacity': [
-                    'interpolate',
-                    ['linear'],
-                    ['zoom'],
-                    0,
-                    0,
-                    5,
-                    0.3,
-                    8,
-                    1
-                ],
-                // set up the sky layer for atmospheric scattering
-                'sky-type': 'atmosphere',
-                // explicitly set the position of the sun rather than allowing the sun to be attached to the main light source
-                'sky-atmosphere-sun': getSunPosition(),
-                // set the intensity of the sun as a light source (0-100 with higher values corresponding to brighter skies)
-                'sky-atmosphere-sun-intensity': 5
-            }
-        });
+    map.addLayer({
+        'id': 'sky',
+        'type': 'sky',
+        'paint': {
+            'sky-opacity': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                0,
+                0,
+                5,
+                0.3,
+                8,
+                1
+            ],
+            // set up the sky layer for atmospheric scattering
+            'sky-type': 'atmosphere',
+            // explicitly set the position of the sun rather than allowing the sun to be attached to the main light source
+            'sky-atmosphere-sun': getSunPosition(),
+            // set the intensity of the sun as a light source (0-100 with higher values corresponding to brighter skies)
+            'sky-atmosphere-sun-intensity': 5
+        }
+    });
 });
 
 map.on('load', () => {
