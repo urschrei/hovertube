@@ -3,32 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>TfL Rail Lines</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <link href='static/script.css' rel='stylesheet' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TfL rail lines hovering, ghost-like, above London.">
+    <link href="static/script.css" rel="stylesheet">
+    <script type="module" src="static/script.js"></script>
 </head>
 <body>
-<div class="container-fluid" role="main">
-    <div class="row"><div class="col-12"><h1>👻 TfL Rail Lines Hovering, Ghost-Like, in the Sky. 🎃</h1></div></div>
-    <div class="row">
-      <div class="col-10" id="map" style="height: 680px;"></div>
-      <div class="col-2">
-        <h5>Toggle Lines</h5>
-        <div class="btn-group-vertical" id="linelist" aria-label="Toggle Lines">
-            <button type="button" style="background-color: #ffffff;"
-                            id="share" class="btn btn-outline-dark active"
-                            aria-pressed="true">
-                <span style="color: #000000;">Highlight Shared Segments</span>
-            </button>
+<main>
+    <div id="map" role="region" aria-label="3D map of TfL rail lines"></div>
+    <aside id="panel" class="panel" aria-labelledby="title">
+        <header class="panel-head">
+            <h1 id="title">👻 TfL Rail Lines Hovering, Ghost-Like, in the Sky 🎃</h1>
+            <button type="button" id="collapse" class="quiet" aria-expanded="true" aria-controls="panel-body">Hide</button>
+        </header>
+        <div id="panel-body" class="panel-body">
+            <section aria-labelledby="lines-heading">
+                <div class="section-head">
+                    <h2 id="lines-heading">Lines</h2>
+                    <div class="pair">
+                        <button type="button" id="all" class="quiet">All</button>
+                        <button type="button" id="none" class="quiet">None</button>
+                    </div>
+                </div>
+                <div id="linelist"></div>
+                <p class="hint">Alt-click a line to show only that line.</p>
+            </section>
+            <section aria-labelledby="view-heading">
+                <h2 id="view-heading">View</h2>
+                <label class="check"><input type="checkbox" id="shared"> Highlight shared track</label>
+                <label class="check"><input type="checkbox" id="stations"> Stations</label>
+                <label class="check"><input type="checkbox" id="shadows"> Shadows</label>
+
+                <label class="range" for="height">Height <output id="height-out" for="height"></output></label>
+                <input type="range" id="height" min="50" max="1500" step="10">
+
+                <label class="range" for="time">London time <output id="time-out" for="time"></output></label>
+                <input type="range" id="time" min="0" max="1439" step="1">
+                <div class="section-head">
+                    <small id="sun-times" class="muted"></small>
+                    <button type="button" id="now" class="quiet">Now</button>
+                </div>
+
+                <fieldset class="segmented">
+                    <legend>Map</legend>
+                    <label><input type="radio" name="basemap" value="auto"> Follow the sun</label>
+                    <label><input type="radio" name="basemap" value="light"> Light</label>
+                    <label><input type="radio" name="basemap" value="dark"> Dark</label>
+                </fieldset>
+
+                <button type="button" id="tour" class="wide" aria-pressed="false">Start tour</button>
+            </section>
         </div>
-      </div>
-    </div>
-</div>
-<footer class="footer">
-    <div class="container">
-        <small><span class="text-muted">A <a href="https://bsky.app/profile/urschrei.bsky.social">Stephan H&uuml;gel</a> distraction. <a href="https://github.com/urschrei/hovertube">Source</a>.
-        </span></small>
-    </div>
-</footer>
-<script type="text/javascript" src="static/script.js"></script>
+        <footer class="panel-foot">
+            <small>A <a href="https://bsky.app/profile/urschrei.bsky.social">Stephan H&uuml;gel</a> distraction. <a href="https://github.com/urschrei/hovertube">Source</a>.</small>
+        </footer>
+    </aside>
+</main>
 </body>
 </html>
