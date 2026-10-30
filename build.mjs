@@ -1,35 +1,28 @@
-import * as esbuild from 'esbuild'
-import { sassPlugin } from "esbuild-sass-plugin";
-import postcss from 'postcss';
-import autoprefixer from 'autoprefixer';
-
-import eslint from 'esbuild-plugin-eslint';
+import * as esbuild from 'esbuild';
+import { copyFile } from 'node:fs/promises';
 
 import browserslist from 'browserslist';
-import {
-  esbuildPluginBrowserslist,
-  resolveToEsbuildTarget,
-} from 'esbuild-plugin-browserslist';
+import { resolveToEsbuildTarget } from 'esbuild-plugin-browserslist';
 
-await esbuild.build({
-  entryPoints: ['script.js'],
-  bundle: true,
-  minify: true,
-  sourcemap: true,
-  metafile: true,
-  outdir: 'static',
-  plugins: [
-      sassPlugin({
-          async transform(source) {
-              const { css } = await postcss([autoprefixer]).process(source, { from: undefined });
-              return css;
-          },
-      }),
-      eslint({
-        "useEslintrc": true
-      }),
-      esbuildPluginBrowserslist(browserslist('defaults'), {
-        printUnknownTargets: false,
-      }),
-  ],
-})
+const options = {
+    entryPoints: { script: 'src/main.js' },
+    bundle: true,
+    // MapLibre 6 is ESM-only and locates its worker via import.meta.url
+    format: 'esm',
+    minify: true,
+    sourcemap: true,
+    outdir: 'static',
+    target: resolveToEsbuildTarget(browserslist(), { printUnknownTargets: false }),
+};
+
+// The worker is loaded from next to the bundle, so ship it alongside
+await copyFile('node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs', 'static/maplibre-gl-worker.mjs');
+
+if (process.argv.includes('--serve')) {
+    const ctx = await esbuild.context(options);
+    await ctx.watch();
+    const { hosts, port } = await ctx.serve({ servedir: '.' });
+    console.log(`Serving on http://${hosts[0]}:${port}/`);
+} else {
+    await esbuild.build(options);
+}

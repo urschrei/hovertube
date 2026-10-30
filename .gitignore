@@ -1,0 +1,5 @@
+node_modules/
+# build output: produced by `npm run build`, deployed by .github/workflows/pages.yml
+static/script.*
+static/maplibre-gl-worker.mjs
+_site/

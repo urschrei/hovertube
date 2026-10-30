@@ -1,7 +1,12 @@
 {
+  "name": "hovertube",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node build.mjs"
+    "build": "node build.mjs",
+    "serve": "node build.mjs --serve",
+    "lint": "eslint .",
+    "data": "uv run scripts/process_lines.py"
   },
   "repository": {
     "type": "git",
@@ -16,19 +21,19 @@
     "url": "https://github.com/urschrei/hovertube/issues"
   },
   "homepage": "https://github.com/urschrei/hovertube#readme",
+  "browserslist": [
+    "defaults"
+  ],
   "dependencies": {
-    "bootstrap": "^5.3.3",
+    "maplibre-gl": "^6.16.0",
+    "suncalc": "^2.1.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "browserslist": "^4.29.5",
     "esbuild": "^0.28.2",
     "esbuild-plugin-browserslist": "^4.0.0",
-    "esbuild-plugin-eslint": "^0.3.12",
-    "eslint": "^8.39.0",
-    "mapbox-gl": "^3.9.2",
-    "suncalc": "^1.9.0"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.14",
-    "esbuild-sass-plugin": "^3.7.0",
-    "postcss": "^8.5.32"
+    "eslint": "^10.14.0",
+    "globals": "^17.13.0"
   }
 }

@@ -1,0 +1,23 @@
+[
+    {"name": "Bakerloo", "colour": "#B36305", "group": "Underground"},
+    {"name": "Central", "colour": "#E32017", "group": "Underground"},
+    {"name": "Circle", "colour": "#FFD300", "group": "Underground"},
+    {"name": "District", "colour": "#00782A", "group": "Underground"},
+    {"name": "Hammersmith & City", "colour": "#F3A9BB", "group": "Underground"},
+    {"name": "Jubilee", "colour": "#A0A5A9", "group": "Underground"},
+    {"name": "Metropolitan", "colour": "#9B0056", "group": "Underground"},
+    {"name": "Northern", "colour": "#000000", "group": "Underground"},
+    {"name": "Piccadilly", "colour": "#003688", "group": "Underground"},
+    {"name": "Victoria", "colour": "#0098D4", "group": "Underground"},
+    {"name": "Waterloo & City", "colour": "#95CDBA", "group": "Underground"},
+    {"name": "Liberty", "colour": "#61686B", "group": "Overground"},
+    {"name": "Lioness", "colour": "#FFA600", "group": "Overground"},
+    {"name": "Mildmay", "colour": "#006FE6", "group": "Overground"},
+    {"name": "Suffragette", "colour": "#18A95D", "group": "Overground"},
+    {"name": "Weaver", "colour": "#9B0058", "group": "Overground"},
+    {"name": "Windrush", "colour": "#D22730", "group": "Overground"},
+    {"name": "Elizabeth line", "colour": "#6950A1", "group": "Other"},
+    {"name": "DLR", "colour": "#00A4A7", "group": "Other"},
+    {"name": "Tramlink", "colour": "#84B817", "group": "Other"},
+    {"name": "IFS Cloud Cable Car", "colour": "#E21836", "group": "Other"}
+]
